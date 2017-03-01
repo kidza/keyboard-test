@@ -1,5 +1,23 @@
-//C1 D1 C#1 D1 E1 D1 C#1 D1 C1/2 D1/2 C1/2 D1/2 E1 E1/2 D1/2 C1/2 D1/2 C1/2 D1/2 E1 E1/2 D1/2 C1/2 D1/2 C1/2 D1/2 C#2
+var Keyboard = (function() {
 
+    function createHtmlContent() {
+        htmlContent = document.createTextNode("O P R E M");
+        return htmlContent;
+    };
+
+    return {
+        init: function(selectorElement) {
+            //draw HTML, returns htmlcontent
+            htmlContent = createHtmlContent();
+            document.getElementById(selectorElement).appendChild(htmlContent);
+            //append HTML to selectorElement
+
+            //bind events to it
+        }
+    }
+})()
+
+/*
 var mouseDownHandler = function(event) {
     element = event.target;
     if (element.tagName == 'SPAN') {
@@ -137,3 +155,4 @@ function triggerMouseEvent(node, eventType) {
     clickEvent.initEvent(eventType, true, true);
     node.dispatchEvent(clickEvent);
 }
+*/
