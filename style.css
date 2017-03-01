@@ -1,0 +1,58 @@
+body {
+    position: relative;
+    background-color: #fff;
+    width: 750px;
+    margin: 0 auto;
+}
+
+#container {
+    margin-top: 50px;
+    border: 2px solid #000;
+}
+
+span.clear {
+    clear: left;
+    display: block;
+}
+
+div.last {
+    border: none;
+}
+
+.tone-container {
+    position: relative;
+    float: left;
+    width: 14.05%;
+    border-right: 2px solid #000;
+}
+
+.whole-tone {
+    height: 200px;
+}
+
+.whole-tone span {
+    bottom: 7%;
+    left: 50%;
+    position: absolute;
+}
+
+.half-tone {
+    background: #000;
+    width: 50%;
+    left: 75%;
+    top: 0px;
+    color: #fff;
+    height: 150px;
+    position: absolute;
+    z-index: 10;
+}
+
+.half-tone span {
+    display: block;
+    margin-top: 120px;
+    text-align: center;
+}
+
+.pressedTone {
+    background-color: #808080;
+}
