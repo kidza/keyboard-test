@@ -1,9 +1,88 @@
 var Keyboard = (function() {
 
-    function createHtmlContent() {
-        htmlContent = document.createTextNode("O P R E M");
-        return htmlContent;
+    var scale = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'H' ];  
+    
+    function getType(tone) {
+        if (tone.match(/#/)) {
+            type = 'half-tone';
+        } else {
+            type = 'whole-tone';
+        }
+        return type;
     };
+
+    function createHtmlContent() {
+        container = document.createElement('div');
+        tones = getHtmlTones();
+        container.appendChild(tones);
+        //getTextarea;
+        inputFields = getInputFields();
+        container.appendChild(inputFields);
+        return container;
+    };
+
+    function getHtmlTones() {
+        var divContainer = document.createElement('div');
+        divContainer.id = "container";
+
+        for (var i = 0; i < scale.length; i++) {
+            if (scale[i].match(/#/) == null) {
+                var toneContainer = document.createElement('div');
+                toneContainer.classList.add('tone-container');
+                if (scale[i] == 'H') {
+                    toneContainer.classList.add('last');
+                }
+            }
+
+            toneContainer.appendChild(getHtmlTone(scale[i]));
+
+            if (scale[i].match(/#/) || scale[i] == 'E' || scale[i] == 'H') {
+                divContainer.appendChild(toneContainer);
+            }
+        }
+
+        spanLastEl = document.createElement('span');
+        spanLastEl.classList.add('clear');
+        divContainer.appendChild(spanLastEl);
+
+        return divContainer;
+    }
+
+    function getHtmlTone(tone) {
+        var divTone = document.createElement('div');
+        divTone.classList.add(getType(tone));
+
+        toneTxtEl = document.createElement('span');
+        toneTxtEl.appendChild(document.createTextNode(tone));
+
+        divTone.appendChild(toneTxtEl);
+
+        return divTone;
+    }
+
+    function getInputFields() {
+        inputFieldsContainer = document.createElement('div');
+        
+        txtPlayed = document.createTextNode('Played: ');
+        
+        inputTextareaPlayed = document.createElement('textarea');
+        inputTextareaPlayed.id = 'tone-played';
+        inputTextareaPlayed.cols = 100;
+        inputTextareaPlayed.rows = 5;
+
+        inputTextareaUserTones = document.createElement('textarea');
+        inputTextareaUserTones.id = 'user-tones';
+
+        inputButton = document.createElement('button');
+        inputButton.textContent = "Play";
+
+        inputFieldsContainer.appendChild(txtPlayed);
+        inputFieldsContainer.appendChild(inputTextareaPlayed);
+        inputFieldsContainer.appendChild(inputTextareaUserTones);
+        inputFieldsContainer.appendChild(inputButton);
+
+        return inputFieldsContainer;
+    }
 
     return {
         init: function(selectorElement) {
